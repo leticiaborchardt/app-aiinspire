@@ -136,8 +136,16 @@
   @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
 }
 
-.dropdown {
+.dropdown--active, .dropdown--inactive {
   @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+}
+
+.dropdown--active {
+  @apply opacity-100 visible translate-y-0 transition-all
+}
+
+.dropdown--inactive {
+  @apply opacity-0 invisible transition-all
 }
 
 .dropdown_link {

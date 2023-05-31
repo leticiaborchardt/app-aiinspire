@@ -2,14 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Nav = () => {
-  const {data: session} = useSession();
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  let menuRef = useRef();
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -19,6 +20,14 @@ const Nav = () => {
     }
 
     setUpProviders();
+
+    let handler = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setToggleDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handler);
   }, []);
 
   return (
@@ -59,18 +68,6 @@ const Nav = () => {
                 className='rounded-full'
               />
             </Link>
-
-            {toggleDropdown && (
-              <div className='dropdown'>
-                <Link
-                  href='/profile'
-                  className='dropdown_link'
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  My Profile
-                </Link>
-              </div>
-            )}
           </div>
         ) : (
           <>
@@ -98,39 +95,38 @@ const Nav = () => {
               src='/assets/images/logo.svg'
               width={37}
               height={37}
-              className='rounded-full'
+              className='rounded-full hover:cursor-pointer'
               alt='profile'
               onClick={() => setToggleDropdown((prev) => !prev)}
+              ref={menuRef}
             />
 
-            {toggleDropdown && (
-              <div className='dropdown'>
-                <Link
-                  href='/profile'
-                  className='dropdown_link'
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  My Profile
-                </Link>
-                <Link
-                  href='/create-prompt'
-                  className='dropdown_link'
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  Create Prompt
-                </Link>
-                <button
-                  type='button'
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    signOut();
-                  }}
-                  className='mt-5 w-full black_btn'
-                >
-                  Sign Out
-                </button>
-              </div>
-            )}
+            <div className={toggleDropdown ? 'dropdown--active' : 'dropdown--inactive'}>
+              <Link
+                href='/profile'
+                className='dropdown_link'
+                onClick={() => setToggleDropdown(false)}
+              >
+                My Profile
+              </Link>
+              <Link
+                href='/create-prompt'
+                className='dropdown_link'
+                onClick={() => setToggleDropdown(false)}
+              >
+                Create Prompt
+              </Link>
+              <button
+                type='button'
+                onClick={() => {
+                  setToggleDropdown(false);
+                  signOut();
+                }}
+                className='mt-5 w-full black_btn'
+              >
+                Sign Out
+              </button>
+            </div>
           </div>
         ) : (
           <>
