@@ -1,9 +1,9 @@
 "use client"
 
-import React from 'react'
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 import Form from '@components/Form';
 
@@ -32,12 +32,29 @@ const CreatePrompt = () => {
       });
 
       if (response.ok) {
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          text: 'Post created with success!',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1700
+        });
+
         router.push('/');
       }
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        text: 'Something went wrong while processing your request. Please try again later.',
+        icon: 'error'
+      });
     } finally {
       setSubmitting(false);
+      setPost({
+        prompt: '',
+        tag: ''
+      });
     }
   }
 
