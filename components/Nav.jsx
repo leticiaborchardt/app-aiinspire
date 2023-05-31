@@ -10,7 +10,7 @@ const Nav = () => {
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  let menuRef = useRef();
+  const menuRef = useRef();
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -21,13 +21,19 @@ const Nav = () => {
 
     setUpProviders();
 
-    let handler = (e) => {
-      if (!menuRef.current.contains(e.target)) {
-        setToggleDropdown(false);
+    if (toggleDropdown === true) {
+      let handler = (e) => {
+        if (!menuRef.current.contains(e.target)) {
+          setToggleDropdown(false);
+        }
+      }
+  
+      document.addEventListener('mousedown', handler);
+  
+      return() => {
+        document.removeEventListener('mousedown', handler);
       }
     }
-
-    document.addEventListener('mousedown', handler);
   }, []);
 
   return (
@@ -61,7 +67,7 @@ const Nav = () => {
 
             <Link href="/profile">
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user?.image}
                 alt='Profile'
                 width={37}
                 height={37}
@@ -92,7 +98,7 @@ const Nav = () => {
         {session?.user ? (
           <div className='flex'>
             <Image
-              src='/assets/images/logo.svg'
+              src={session?.user?.image}
               width={37}
               height={37}
               className='rounded-full hover:cursor-pointer'
