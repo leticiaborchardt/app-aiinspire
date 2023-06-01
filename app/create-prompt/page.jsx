@@ -44,7 +44,6 @@ const CreatePrompt = () => {
         router.push('/');
       }
     } catch (error) {
-      console.log(error);
       Swal.fire({
         text: 'Something went wrong while processing your request. Please try again later.',
         icon: 'error'
