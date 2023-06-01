@@ -20,7 +20,9 @@ const Nav = () => {
     }
 
     setUpProviders();
+  }, []);
 
+  useEffect(() => { 
     if (toggleDropdown === true) {
       let handler = (e) => {
         if (!menuRef.current.contains(e.target)) {
@@ -34,7 +36,7 @@ const Nav = () => {
         document.removeEventListener('mousedown', handler);
       }
     }
-  }, []);
+  })
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
