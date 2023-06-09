@@ -73,6 +73,18 @@
   @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
 }
 
+.footer {
+  @apply relative flex justify-center items-center flex-col sm:px-16 px-6 bg-purple-200/30 pt-8 pb-6 mt-10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur
+}
+
+.footer_social_icon {
+  @apply bg-white shadow-lg font-normal h-8 w-8 p-1 items-center justify-center rounded-full outline-none
+}
+
+.footer_link {
+  @apply text-gray-600 hover:text-gray-800 font-semibold block pb-2 text-sm
+}
+
 .black_btn {
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
 }
@@ -82,7 +94,7 @@
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+  @apply mt-5 text-4xl font-extrabold leading-[1.15] text-black sm:text-6xl;
 }
 
 .primary_gradient {
@@ -93,16 +105,12 @@
   @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
 }
 
-.blue_gradient {
-  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
-}
-
 .desc {
   @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
 }
 
 .search_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi px-10 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
 }
 
 .copy_btn {
@@ -133,7 +141,7 @@
 
 /* Nav Component */
 .logo_text {
-  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+  @apply max-sm:hidden font-satoshi font-semibold tracking-widest text-xl text-purple-950;
 }
 
 .dropdown--active, .dropdown--inactive {

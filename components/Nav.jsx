@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
+import { LogOut, Plus, PlusCircle } from 'lucide-react';
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -44,8 +45,8 @@ const Nav = () => {
         <Image
           src="/assets/images/logo.svg"
           alt="Logo"
-          width={30}
-          height={30}
+          width={35}
+          height={35}
           className="object-contain"
         />
         <p className='logo_text'>AIInspire</p>
@@ -55,16 +56,18 @@ const Nav = () => {
       <div className='sm:flex hidden'>
         {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
-            <Link href="/create-prompt" className='black_btn'>
-              Create Post
+            <Link href="/create-prompt" className='black_btn gap-2'>
+              Create Prompt
+              <Plus width={15}/>
             </Link>
 
             <button
               type="button"
-              className='outline_btn'
+              className='outline_btn gap-2'
               onClick={signOut}
             >
               Sign Out
+              <LogOut width={15} />
             </button>
 
             <Link href="/profile">

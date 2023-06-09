@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
+import { Search } from "lucide-react";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -69,6 +70,7 @@ const Feed = () => {
   return (
     <section className='feed'>
       <form className='relative w-full flex-center' onSubmit={e => { e.preventDefault()}}>
+        <Search className="w-4 h-4 absolute top-1/2 transform -translate-y-1/2 left-3 text-gray-500"/>
         <input
           type='text'
           placeholder='Search for a tag or a username'
